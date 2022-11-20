@@ -1,0 +1,203 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+header, h1, nav, .list-comment {
+  font-family: 'Kaushan', cursive, sans-serif;
+}
+
+header {
+  width: 90%;
+  padding: 15px 0;
+  margin: 30px auto 0;
+  text-align: center;
+  border-top: solid 5px #000000;
+}
+
+header .headline {
+  font-size: 32px;
+}
+
+nav {
+  width: 880px;
+  margin: 0 auto;
+  border-top: solid 0.7px #000000;
+  border-bottom: solid 0.7px #000000;
+}
+
+.nav-list {
+  text-align: center;
+  padding: 10px 0;
+  margin: 0 auto;
+}
+
+.nav-list-item {
+  list-style: none;
+  display: inline-block;
+  margin: 0 20px;
+}
+
+main {
+  width: 880px;
+  margin: 0 auto;
+}
+
+.list-wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.list-box {
+  width: 200px;
+  height: 250px;
+  margin: 10px;
+  position: relative;
+}
+
+.list-comment {
+  width: 200px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+
+.list-body {
+  display: block;
+  color: gray;
+  font-size: 12px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.list-title {
+  display: block;  font-size: 18px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+
+/*表題52*/
+/*レイアウトを整えよう3*/
+/*ファイルは app/assets/stylesheets 以下にあるので、以下のハイライト部分を追加してください。*/
+/** {*/
+/*  margin: 0;*/
+/*  padding: 0;*/
+/*  box-sizing: border-box;*/
+/*}*/
+/*header {*/
+/*  width: 90%;*/
+/*  padding: 15px 0;*/
+/*  margin: 30px auto 0;*/
+/*  text-align: center;*/
+/*  border-top: solid 5px #000000;*/
+/*}*/
+/*header .headline {*/
+/*  font-size: 32px;*/
+/*}*/
+/*nav {*/
+/*  width: 880px;*/
+/*  margin: 0 auto;*/
+/*  border-top: solid 0.7px #000000;*/
+/*  border-bottom: solid 0.7px #000000;*/
+/*}*/
+/*.nav-list {*/
+/*  text-align: center;*/
+/*  padding: 10px 0;*/
+/*  margin: 0 auto;*/
+/*}*/
+/*.nav-list-item {*/
+/*  list-style: none;*/
+/*  display: inline-block;*/
+/*  margin: 0 20px;*/
+/*}*/
+/*main {*/
+/*  width: 880px;*/
+/*  margin: 0 auto;*/
+/*}*/
+/*.list-wrap {*/
+/*  display: flex;*/
+/*  flex-wrap: wrap;*/
+/*}*/
+/*.list-box {*/
+/*  width: 200px;*/
+/*  height: 250px;*/
+/*  margin: 10px;*/
+/*}*/
+/*.list-comment {*/
+/*  width: 200px;*/
+/*}*/
+/*追記後は*/
+/*app/views/layouts/application.html.erbに移動します*/
+
+/*表題54*/
+/*レイアウトを整えよう5*/
+/*次に先程読み込むことができるようにしたフォントをCSSで呼び出します。*/
+/*さらに、カラーやサイズの変更とコメントの配置の調整をここでまとめて行います。*/
+/*1⃣headerの前に以下のコードを追加*/
+/*  header, h1, nav, .list-comment {*/
+/*  font-family: 'Kaushan', cursive, sans-serif;*/
+/*  }*/
+/*2⃣.list-box に以下のコードを追加*/
+/*  position: relative;*/
+/*3⃣.list-commentに以下のコードを追加*/
+/*  position: absolute;*/
+/*  left: 0;*/
+/*  bottom: 0;*/
+/*4⃣.list-commentの後に以下のコードを追加*/
+/*  .list-body {*/
+/*  color: gray;*/
+/*  font-size: 12px;*/
+/*  }*/
+/*  .list-title {*/
+/*  font-size: 18px;*/
+/*  }*/
+/*ここでpositionプロパティを指定したことで、画像を投稿しない場合でもコメントの位置が画像がある投稿と揃うようになります。*/
+/*positionプロパティは親要素に「relative」、子要素に「absolute」を指定することで、子要素の位置を親要素の範囲内で指定できるようになります。*/
+
+/*画像に対するコメントの長さがバラバラのとき、ここまでのコードでは綺麗に整えたレイアウトが崩れてしまいます。*/
+/*これを防ぐために以下のハイライト部分を追記してください。*/
+/*.list-body {*/
+/*  color: gray;*/
+/*  font-size: 12px;*/
+/*}*/
+/*.list-title {*/
+/*  font-size: 18px;*/
+/*}*/
+/*↓*/
+/*.list-body {*/
+/*  display: block;*/
+/*  color: gray;*/
+/*  font-size: 12px;*/
+/*  overflow: hidden;*/
+/*  white-space: nowrap;*/
+/*  text-overflow: ellipsis;*/
+/*}*/
+/*.list-title {*/
+/*  display: block;  font-size: 18px;*/
+/*  overflow: hidden;*/
+/*  white-space: nowrap;*/
+/*  text-overflow: ellipsis;*/
+/*}*/
+/*「white-space: nowrap;」は、テキストを折り返し表示させないようにするプロパティで、*/
+/*「text-overflow: ellipsis;」は、領域をはみ出したテキストを三点リーダー（...）で省略表示するプロパティです。*/
+/*app/controllers/lists_controller.rbに移動します*/

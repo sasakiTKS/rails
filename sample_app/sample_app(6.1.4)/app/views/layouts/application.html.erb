@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SampleApp</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header>
+      <h1 class="headline"> All Lists </h1>
+    </header>
+    <nav>
+      <ul class="nav-list">
+        <li class="nav-list-item">
+          <%= link_to "Top", top_path %>
+        </li>
+        <li class="nav-list-item">
+          <%= link_to "Lists", lists_path %>
+        </li>
+        <li class="nav-list-item">
+          <%= link_to "New List", new_list_path %>
+        </li>
+      </ul>
+    </nav>
+    <main>
+      <%= yield %>
+    </main>
+  </body>
+</html>
+
+<!--表題51-->
+<!--レイアウトを整えよう2-->
+<!--ファイルは app/views/layouts/以下にあるので、以下のハイライト部分を追加してください。-->
+<!--<body>-->
+<!--    <!%= yield %>-->
+<!--</body>-->
+<!--↓-->
+<!--<body>-->
+<!--    <header>-->
+<!--      <h1 class="headline"> All Lists </h1>-->
+<!--    </header>-->
+<!--    <nav>-->
+<!--      <ul class="nav-list">-->
+<!--        <li class="nav-list-item">-->
+<!--          <!%= link_to "Top", top_path %>-->
+<!--        </li>-->
+<!--        <li class="nav-list-item">-->
+<!--          <!%= link_to "Lists", lists_path %>-->
+<!--        </li>-->
+<!--        <li class="nav-list-item">-->
+<!--          <!%= link_to "New List", new_list_path %>-->
+<!--        </li>-->
+<!--      </ul>-->
+<!--    </nav>-->
+<!--    <main>      -->
+<!--    <!%= yield %>-->
+<!--    </main>-->
+<!--</body>-->
+<!--app/assets/stylesheets/application.cssに移動します-->
+
+<!--表題53-->
+<!--レイアウトを整えよう4-->
+<!--①フォント（各サイズ、カラー、スタイル、配置）②長い文字列を省略表示を調整していきます-->
+<!--まず外部のwebサイトからフォントを読み込む記述を①application.html.erbにします-->
+<!--<head>内に以下のハイライト部分を追記してください。-->
+<!-- <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">-->
+<!--次にapp/assets/stylesheets/application.cssへ移動します-->

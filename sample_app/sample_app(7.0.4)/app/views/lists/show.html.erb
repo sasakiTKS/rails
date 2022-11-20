@@ -1,0 +1,92 @@
+<h2>タイトル</h2>
+<p><%= @list.title %></p>
+
+<h2>本文</h2>
+<p><%= @list.body %></p>
+
+<h2>画像</h2>
+<% if @list.image.attached? %>
+  <%= image_tag @list.image, size: "300x300" %>
+<% else %>
+  <%= image_tag 'no_image', size: "300x300" %>
+<% end %>
+
+<%= link_to "編集", edit_list_path(@list.id) %>
+<%= link_to "削除", destroy_list_path(@list.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+
+<!--!マークはコメントアウトなので無視する)-->
+
+<!--表題20-->
+<!--詳細画面を作ろう3-->
+<!--まずは記述されているコードを削除します。-->
+<!--次に@listにListモデルのカラムを指定した-->
+<!--<h2>タイトル</h2>-->
+<!--<p><!%= @list.title %></p>-->
+<!--<h2>本文</h2>-->
+<!--<p><!%= @list.body %></p>-->
+<!--を入力する-->
+<!--@listにはURLによって異なるレコードが入るはずです-->
+<!--サーバを起動してlists/1にアクセスします。-->
+<!--確認完了後app/views/lists/index.html.erbに移動します-->
+
+<!--表題31-->
+<!--詳細画面に編集画面へのリンクを追加する-->
+<!--<!%= link_to "編集", edit_list_path(@list.id) %>-->
+<!--上記を追加する-->
+<!--サーバを起動して-->
+<!--https://...amazonaws.com/lists/1へアクセスし、-->
+<!--リンクが機能しているかどうかを確認する。-->
+<!--次の項は画像追加なのでrails active_storage:installで-->
+<!--アプリをダウンロードする-->
+<!--その後　rails db:migrate　のコマンドを実行する-->
+<!--実行後はapp/models/list.rbへ移動-->
+
+<!--表題36-->
+<!--画像投稿機能を作ろう5-->
+ <!--<h2>画像</h2>-->
+ <!--% if @list.image.attached? %>-->
+ <!-- <!%= image_tag @list.image, size: "300x300" %>-->
+ <!--<!% else %>-->
+ <!-- <!%= image_tag 'no_image', size: "300x300" %>-->
+ <!--<!% end %>-->
+ <!--先ほどindexに記載した内容と同様なものを記載します。-->
+ <!--その後サンプルの画像をダウンロードして-->
+ <!--サーバーを起動してhttps://...amazonaws.com/lists/newにアクセスします。-->
+ <!--アクセス後はタイトル、本文を入力して、画像をファイル選択から投稿します-->
+ <!--その後、URLがlists/値になっているのを確認する-->
+
+ <!--has_one_attached :imageをhas_one_attached :iconに変更したい場合-->
+ <!--画像を投稿するフォームの<!%= f.file_field :image %>を-->
+ <!--<!%= f.file_field :icon %>に変更します-->
+ <!--その後.image.attached?が記述されているviewファイルのimageをiconに-->
+ <!--変更することでhas_one_attached :iconにすることができる。-->
+ <!--そのほかの変更はしなくても画像表示することができます。-->
+ <!--削除機能を追加するのでconfig/routes.rbに移動します。-->
+
+<!--表題39-->
+<!--削除機能を作ろう3-->
+<!--destroyアクションへのリンクを、show.html.erbファイルに作成しますが-->
+<!--link_toのmethodオプションについて先に説明します。-->
+<!--今まで、link_toを作成して画面の遷移を行なってきていましたが-->
+<!--それらは全てHTTPメソッドがGETになっています。-->
+<!--そのため、このままでは以下のことができません。-->
+<!--update <= HTTPメソッドがPATCHのため-->
+<!--destroy <= HTTPメソッドがDELETEのため-->
+<!--create <= HTTPメソッドがPOSTのため-->
+<!--これらのアクションを実行するためにはURLだけではなく-->
+<!--HTTPメソッドも指定しなければなりません。-->
+<!--link_toのmethodオプションは、URLに対してHTTPメソッドを設定する為のオプションです-->
+<!--PATCHメソッドを指定する為には以下のように記述する(methodオプション以外は簡略化)-->
+<!--　<!%= link_to '表示するテキスト', URL, method: :patch %>-->
+<!--ルーティングの中からHTTPメソッドがPATCHでURLが同じという条件で-->
+<!--実行するべきアクションを探して実行してくれます-->
+<!--destroyアクションのHTTPメソッドは、DELETEを指定します。-->
+<!--誤って「削除」をクリックしてしまった場合に備えて、-->
+<!--data-confirmを用いて削除確認ダイアログも表示されるように設定します。-->
+<!--<!%= link_to "削除", destroy_list_path(@list.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>-->
+<!--削除は文字列　destroy_list_path(@list.id)はリダイレクト要素とlink_toの指定範囲の要素、-->
+<!--本来ローカル変数の引数でいいが、アクセス前とリダイレクト先がインスタンス要素で構成しているので、-->
+<!--destroy_list_path(@list.id)の引数もインスタンス変数で行う。-->
+<!--method: deleteはdestroy_list_path(@list.id)内のdeleteを行うというアクションを実行させる要素です。-->
+<!--"data-confirm" => "本当に削除しますか？"という確認ダイアログを表示させるものです-->
+<!--サーバーを起動してhttps://...amazonaws.com/lists/1で削除が使用できる確認する-->

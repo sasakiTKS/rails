@@ -1,0 +1,48 @@
+<h1>編集画面</h1>
+
+<%= form_with model: @list, url: update_list_path(@list.id), method: :patch do |f| %>
+
+  <h4>タイトル</h4>
+  <%= f.text_field :title %>
+
+  <h4>本文</h4>
+  <%= f.text_area :body %>
+
+  <%= f.submit '保存' %>
+
+<% end %>
+
+<!--!マークはコメントアウトなので無視する)-->
+
+<!--表題26-->
+<!--編集機能を作ろう2-->
+<!--編集画面を作成するために初期の記述は削除し以下の記述をします-->
+<!--<h1>編集画面</h1>-->
+<!-- <!%= form_with model: @list do |f| %>-->
+<!--  <h4>タイトル</h4>-->
+<!--  <!%= f.text_field :title %>-->
+<!--  <h4>本文</h4>-->
+<!--  <!%= f.text_area :body %>-->
+<!--  <!%= f.submit '保存' %>-->
+<!-- <!% end %>-->
+<!--これはnew.html.erbで記述したコードの省略形でh1が異なるだけで同様なものです。-->
+<!--new.html.erbのほうが省略型を正規の形に直してある↓-->
+<!--(<!%= form_with model: @list, url: '/lists', method: :post do |f| %>)-->
+<!--new.html.erbと同様にform_withを利用すると、-->
+<!--インスタンス変数を渡すだけで、インスタンス変数内のモデルを解読して、-->
+<!--投稿したタイトルと内容を代入してくれます。-->
+<!--記述した後はconfig/routes.rbへ移動します-->
+
+<!--表題30-->
+<!--編集機能に更新機能を追加する3-->
+<!--updateのためRouteingにはHTTPメソッドを-->
+<!--PATCH,名前付きルートをupdate_listに設定しているので、-->
+<!--その記述をフォームに追記していきます-->
+<!-- <!%= form_with model: @list do |f| %>-->
+<!-- ↓-->
+<!-- <!%= form_with model: @list, url: update_list_path(@list.id), method: :patch do |f| %>-->
+<!--サーバを起動して、https://...amazonaws.com/lists/1/editへアクセスします。-->
+<!--本文を編集して編集ボタンを押して更新します-->
+<!--その後URLがhttps://...amazonaws.com/lists/1/になっていて-->
+<!--本文が編集したものになっているかを確認します-->
+<!--確認後はapp/views/lists/show.html.erbへ移動する-->

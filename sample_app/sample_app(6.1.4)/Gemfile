@@ -1,0 +1,137 @@
+source 'https://rubygems.org'
+git_source(:github) { |repo| "https://github.com/#{repo}.git" }
+
+ruby '3.1.2'
+
+# Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
+gem 'rails', '~> 6.1.4'
+# Use sqlite3 as the database for Active Record
+gem 'sqlite3', '~> 1.4'
+# Use Puma as the app server
+gem 'puma', '~> 5.0'
+# Use SCSS for stylesheets
+gem 'sass-rails', '>= 6'
+# Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
+gem 'webpacker', '~> 5.0'
+# Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
+gem 'turbolinks', '~> 5'
+# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
+gem 'jbuilder', '~> 2.7'
+# Use Redis adapter to run Action Cable in production
+# gem 'redis', '~> 4.0'
+# Use Active Model has_secure_password
+# gem 'bcrypt', '~> 3.1.7'
+
+# Use Active Storage variant
+# gem 'image_processing', '~> 1.2'
+
+# Reduces boot times through caching; required in config/boot.rb
+gem 'bootsnap', '>= 1.4.4', require: false
+
+group :development, :test do
+  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'pry-rails'
+end
+
+group :development do
+  # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
+  gem 'web-console', '>= 4.1.0'
+  # Display performance information such as SQL time and flame graphs for each request in your browser.
+  # Can be configured to work on production as well see: https://github.com/MiniProfiler/rack-mini-profiler/blob/master/README.md
+  gem 'rack-mini-profiler', '~> 2.0'
+  gem 'listen', '~> 3.3'
+  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'spring'
+end
+
+group :test do
+  # Adds support for Capybara system testing and selenium driver
+  gem 'capybara', '>= 3.26'
+  gem 'selenium-webdriver'
+  # Easy installation and use of web drivers to run system tests with browsers
+  gem 'webdrivers'
+end
+
+# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+# 表題49
+# rails cを使ってみよう2
+# それではpryを導入してみましょう。Gemfileに以下コードを追加します。
+# Gemfile
+#
+#group :development, :test do
+#   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+# end
+# ↓
+# group :development, :test do
+#   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+#   gem 'pry-rails'end
+# 追記を終えたらbundle install を行います→$ bundle install
+# インストール後、再度rails cを入力します、以下が表示されれば問題ないです
+# username:~/environment/sample_app $ rails c
+# Running via Spring preloader in process ----(ここは数値)
+# Loading development environment (Rails 6.1.4)
+# [1] pry(main)>
+# rails cを用いると、ターミナルから直接、レコードの新規作成を行う事ができます。
+
+# １. レコードの保存
+# 例えば、下記のように実行します。
+# pry(main)> List.create(title:"railsを学ぼう",body:"rails cについて")
+# listテーブルのレコードに、titleカラムが「railsを学ぼう」、bodyカラムが「rails cについて」というデータが保存されます。
+# (0.1ms)  begin transaction
+# List Create (1.6ms)  INSERT INTO "lists" ("title", "body", "created_at", "updated_at") VALUES (?, ?, ?, ?)
+# [["title", "railsを学ぼう"], ["body", "rails cについて"], ["created_at", "2020-06-08 11:03:47.925565"], ["updated_at", "2020-06-08 11:03:47.925565"]]
+#   (0.5ms)  commit transaction
+# => #<List:0x000055f2f8fcf328
+#   id: 1,
+#   title: "railsを学ぼう",
+#   body: "rails cについて",
+#   created_at: Mon, 08 Jun 2020 11:03:47 UTC +00:00,
+#   updated_at: Mon, 08 Jun 2020 11:03:47 UTC +00:00>
+# 上記のように表示されれば、保存処理が正常に動作しています。
+
+# ２. レコードの取得
+# レコードを全て取得するには以下のように入力します。
+# pry(main)> List.all
+# List Load (0.7ms)  SELECT "lists".* FROM "lists"
+# => [#<List:0x000055f2f8ec56d0 id: 1,
+#   title: "railsを学ぼう",
+#   body: "rails cについて",
+#   created_at: Mon, 08 Jun 2020 11:03:47 UTC +00:00,
+#   updated_at: Mon, 08 Jun 2020 11:03:47 UTC +00:00]
+# 終了する際にはQキーを押す必要があります
+# 次に、指定したレコードを取得します。
+# 例えば、idが1のレコードを取得したい場合は下記のようにコマンドを実行します。
+# pry(main)> List.find(1)
+# 下記のように表示されます。
+# List Load (0.6ms)  SELECT  "lists".* FROM "lists" WHERE "lists"."id" = ? LIMIT ?  [["id", 1], ["LIMIT", 1]]
+# => #<List:0x000055f2f8b6bae8
+#   id: 1,
+#   title: "railsを学ぼう",
+#   body: "rails cについて",
+#   created_at: Mon, 08 Jun 2020 11:03:47 UTC +00:00,
+#   updated_at: Mon, 08 Jun 2020 11:03:47 UTC +00:00>
+
+# ３. データの削除
+# idを指定してデータを削除したい時は、次のように実行します。
+# pry(main)> List.find(1).destroy
+# List Load (1.0ms)  SELECT  "lists".* FROM "lists" WHERE "lists"."id" = ? LIMIT ?  [["id", 1], ["LIMIT", 1]]
+#   (0.1ms)  begin transaction
+# List Destroy (1.4ms)  DELETE FROM "lists" WHERE "lists"."id" = ?  [["id", 1]]
+#   (3.1ms)  commit transaction
+# => #<List:0x000055f2f8a3f520
+#   id: 1, title: "railsを学ぼう",
+#   body: "rails cについて",
+#   created_at: Mon, 08 Jun 2020 11:03:47 UTC +00:00,
+#   updated_at: Mon, 08 Jun 2020 11:03:47 UTC +00:00>
+# 上記のように表示されれば、destroyが正常に動作しています。
+# それでは、本当にid=1のデータが削除されているのか、レコードの取得を使って、確認してみましょう。
+# pry(main)> List.find(1)
+# List Load (0.7ms)  SELECT  "lists".* FROM "lists" WHERE "lists"."id" = ? LIMIT ?  [["id", 1], ["LIMIT", 1]]
+# ActiveRecord::RecordNotFound: Couldn't find List with 'id'=1
+# from /var/lib/gems/2.5.0/gems/activerecord-5.2.5/lib/active_record/core.rb:177:in `find'
+# 「RecordNotFound」が表示され、正常に削除されている事が分かりました。
+# rails cを終了させます→pry(main)> exit
+# app/views/lists/index.html.erbに移動します
